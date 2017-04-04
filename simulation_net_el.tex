@@ -19,6 +19,13 @@
 \usepackage{subcaption}
 \captionsetup{compatibility=false}
 \graphicspath{ {images/} }
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
 
 \hypersetup{
   colorlinks=true,
@@ -59,18 +66,30 @@
 \begin{document}
 \selectlanguage{greek}
 
-\title{Προσομοίωση Πρωτοκόλλου Πολλαπλής Πρόσβασης σε Πολυδιαυλικά Δίκτυα}
-\author{
-        Δημήτριος Πολίτης (ΥΔ)\\
-        Εθνικό Μετσόβιο Πολυτεχνείο\\
-        Σχολή Ηλεκτρολόγων Μηχανικών και Μηχανικών Η/Υ\\
-        Ζωγράφου, Αθήνα, 15780 \underline{Ελλάδα}
-}
-\date{\today}
-
 \hypersetup{pageanchor=false}
 
-\maketitle
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.15\textwidth]{pyrforos}\par\vspace{1cm}
+  {\scshape\LARGE Εθνικό Μετσόβιο Πολυτεχνείο\\
+  Σχολή Ηλεκτρολόγων Μηχανικών και Μηχανικών Η/Υ\par}
+  \vspace{1cm}
+  {\scshape\Large Εργασία στο Μεταπτυχιακό Μάθημα\\
+  Προχωρημένα Θέματα Προσομοίωσης Συστημάτων\par}
+  \vspace{1.5cm}
+  {\Large\bfseries Προσομοίωση Πρωτοκόλλου Πολλαπλής Πρόσβασης σε Πολυδιαυλικά Δίκτυα\par}
+  \vspace{2cm}
+  {\Large Δημήτριος Πολίτης (ΥΔ)\par}
+  \vfill
+  Επιβλέπων \par
+  Καθ. Ευστάθιος Συκάς
+
+  \vfill
+
+% Bottom of the page
+  {\large \today\par}
+  \afterpage{\blankpage}
+\end{titlepage}
 
 \tableofcontents
 \thispagestyle{empty}
