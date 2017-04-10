@@ -315,39 +315,76 @@ p_i=\Pr(X \leq x)=\sum_{i:x_i \leq x}^{} p_i
 \end{align*}
 Μπορεί να αποδειχθεί~\cite{book:04} σε αυτή την περίπτωση ότι η αντίστροφη συνάρτηση ορίζεται από τη σχέση:
 \begin{align*}
-F^{-1}(u)=min{x|u \leq F(x)}
+F^{-1}(u)=min\{x|u \leq F(x)\}
 \end{align*}
 Ο αλγόριθμος, ο οποίος υλοποιεί την διαδικασία υπολογισμού είναι όπως παρακάτω:
 \selectlanguage{english}
 \begin{algorithm}[h]
 \caption{\textlatin{Inverse Tranform Method}}
 \begin{algorithmic}[1]
-\Procedure{minCapacity}{$(G(V,E,w)s,t)$}
-    \For{\textbf{all} $u \in V$}
-      \State $D[u] \gets \infty$
-  \EndFor
-  \State $D[s] \gets 0 ; S \gets \emptyset$
-  \While {$|S| < |V|$}
-      \State $u \notin S : D[u] = min_{v \notin S}\{D[v]\}$
-    \State $S \gets S \cup \{u\}$
+  \State $U \leftarrow R(0,1)$
+  \State $i \leftarrow 1$
+  \While {$(F(x_i)<U)$}
+    \State $i \leftarrow i+1$
   \EndWhile
-    \For{\textbf{all} $v \in AdjList[u]$}
-    \If {$D[v] > max(D[u], w[u,v])$}
-      \State $D[v] \gets max(D[u], w[u,v])$
-    \EndIf
-  \EndFor
-  \State \textbf{return} D[t]
-\EndProcedure
+  \State $X \leftarrow x_i$
 \end{algorithmic}
 \end{algorithm}
 \selectlanguage{greek}
 Για το λόγο ότι η συγκεκριμένη μέθοδος απαιτεί γραμμική αναζήτηση, είναι μη αποδοτική όταν το \(n\) είναι μεγάλος αριθμός.
 
-\paragraph{Μέθοδος Αποδοχής - Απόρριψης}
-\paragraph{Συνθετική Μέθοδος}
-\paragraph{Μετασχηματισμοί Κατανομών}
+Στο σχήμα~\ref{fig:Inv_fun} περιγράφεται η μέθοδος για τη συνεχή και τη διακριτή περίπτωση.
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=1.0\linewidth, height=6cm]{inv_method_con} 
+\caption{Συνεχής Περίπτωση}
+\label{fig:inv_method_con}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=1.0\linewidth, height=6cm]{inv_method_dis}
+\caption{Διακριτή Περίπτωση}
+\label{fig:inv_method_dis}
+\end{subfigure}
+ 
+\caption{Μέθοδος Αντίστροφης Συνάρτησης}
+\label{fig:Inv_fun}
+\end{figure}
 
-\subsubsection{Στατιστικές Κατανομές στην Προσομοίωση}
+\paragraph{Μέθοδος Αποδοχής - Απόρριψης (\textlatin{Monte Carlo})}
+Η μέθοδος αυτή χρησιμοποιείται όταν είναι δύσκολος ο υπολογισμός της αντίστροφης αθροιστικής συνάρτησης πιθανότητας. Για την εφαρμογή της εργαζόμαστε ως εξής:
+\begin{itemize}
+  \item Η συνάρτηση πυκνότητας πιθανότητας είναι άνω φραγμένη από μια άλλη συνάρτηση πυκνότητας πιθανότητας \(g(x)\) \(\forall x\).
+  \item Είναι δυνατή η παραγωγή τυχαίων αριθμών που ακολουθούν ομοιόμορφη κατανομή σε όλο το γεωμετρικό χώρο μεταξύ της καμπύλης \(g(x)\) και του άξονα των \(x\). Έστω ότι σημειώνουμε τα παραγόμενα σημεία με \((X, Y)\).
+  \item Εάν η γραφική παράσταση της \(f(x)\) σχεδιαστεί στο ίδιο διάγραμμα με την \(g(x)\) τότε κάποια σημεία θα βρεθούν πάνω από την καμπύλη της \(f(x)\) ενώ κάποια σημεία κάτω της, δηλαδή θα είναι \(Y>f(x)\) ή \(Y \leq f(x)\). αποδεκτά γίνονται μόνο τα σημεία που βρίσκονται κάτω από την \(f(x)\).
+\end{itemize}
+Η μέθοδος παριστάνεται διαγραμματικά στο σχήμα~\ref{fig:acc_rej_method}.
+\begin{figure}[h]
+\includegraphics[width=0.9\linewidth, height=7cm]{acc_rej_method} 
+\caption{Μέθοδος Αποδοχής - Απόρριψης}
+\label{fig:acc_rej_method}
+\end{figure}
+
+\paragraph{Συνθετική Μέθοδος}
+Ορισμένες φορές είναι επιθυμητή η παραγωγή τυχαίων αριθμών σε μη γνωστή κατανομή, η οποία όμως μπορεί να αναλυθεί σε ένα αλγεβρικό άθροισμα διαφορετικών γνωστών κατανομών. Σε αυτές τις περιπτώσεις, εάν είναι δυνατή η παραγωγή τυχαίων αριθμών από τις γνωστές κατανομές, τότε χρησιμοποιείται ο παρακάτω αλγόριθμος για την παραγωγή της σύνθετης κατανομής:
+\selectlanguage{english}
+\begin{algorithm}[H]
+\caption{\textlatin{Composition Method}}
+\begin{algorithmic}[1]
+  \State $F_j \leftarrow \sum_{i=1}^{j}p_i$ for $j=1,2,\cdots,r$
+  \State $U \leftarrow R(0,1)$
+  \State $i \leftarrow 1$
+  \While{$F_i<U$}
+    \State $i \leftarrow i+1$
+  \EndWhile
+  \State Return $X=X_i$\Comment{A variate drawn from the density $f_i$} 
+\end{algorithmic}
+\end{algorithm}
+\selectlanguage{greek}
+
+\paragraph{Μετασχηματισμοί Κατανομών}
+Ορισμένες φορές είναι δυνατό κάποιες κατανομές να προσεγγίζονται ικανοποιητικά από άλλες γνωστές κατανομές με πιο απλή μαθηματική διατύπωση ή με τρόπο ώστε να είναι δυνατός ο υπολογισμός της αντίστροφης συνάρτησης πιθανότητας. Τέτοιες περιπτώσεις αναφέρονται στο τμήμα~\ref{stat_distributions}.
+
+\subsubsection{Στατιστικές Κατανομές στην Προσομοίωση}\label{stat_distributions}
 Οι κύριες στατιστικές κατανομές που χρησιμοποιούνται κατά την προσομοίωση δικτυακής κίνησης είναι οι εξής:
 \paragraph{Διωνυμική Κατανομή \(B(n, p)\)} Οι εφαρμογές της περιλαμβάνουν κατά κύριο λόγο:
 \begin{itemize}
@@ -395,7 +432,7 @@ F(k;n,p)=\Pr(X \leq k)=\sum _{i=0}^{\lfloor k\rfloor }\binom {n}{i}p^{i}(1-p)^{n
 
 Για την παραγωγή τυχαίων αριθμών που ακολουθούν τη διωνυμική κατανομή, ακολουθούνται οι παρακάτω μέθοδοι~\cite{book:07}:
 \begin{itemize}
-  \item Μέθοδος Απόρριψης. Παράγονται \(n\) αριθμοί \(U(0, 1)\) από τη γεννήτρια ψευδοτυχαίων. Ο αριθμός ο οποίος είναι μικρότερος από \(p\) ακολουθεί την \(B(n, p)\) κατανομή.
+  \item Μέθοδος Αποδοχής - Απόρριψης. Παράγονται \(n\) αριθμοί \(U(0, 1)\) από τη γεννήτρια ψευδοτυχαίων. Ο αριθμός ο οποίος είναι μικρότερος από \(p\) ακολουθεί την \(B(n, p)\) κατανομή.
   \item Μέθοδος της Γεωμετρικής Κατανομής. Εάν το \(p\) είναι αρκετά μικρό, μια γρηγορότερη μέθοδος είναι η άθροιση \(x\) αριθμών που ακολουθούν γεωμετρική κατανομή εώς ότου το άθροισμα να ξεπεράσει το \(n-x\). Το πλήθος των αθροιζόμενων αριθμών είναι ένας αριθμός διωνυμικής κατανομής.
 \end{itemize}
 
@@ -651,17 +688,25 @@ F(x;\alpha,c)=\Pr(X \leq x)=1-\left(\frac{\alpha}{x}\right)^{c}
 
 Αντίθετα, σε αυτή την περίπτωση είναι βολική η χρήση δυναμικού προγραμματισμού για τη δημιουργία με δυναμικό τρόπο του πίνακα διωνυμικών συντελεστών, που περιγράφηκε προηγουμένως. Ο δυναμικός προγραμματισμός κρύβεται πίσω από τον αλγόριθμο πλήρωσης του πίνακα. Κάθε γραμμή συμπληρώνεται αναδρομικά σύμφωνα με τον αλγόριθμο:
 \selectlanguage{english}
-\scriptsize
-\begin{verbatim}
-Algorithm Binomial(n, k)
-for i = 0 to n do  // fill out the table row wise
-  for i = 0 to min(i, k) do
-    if j==0 or j==i then C[i, j] = 1
-    else C[i, j] = C[i-1, j-1] + C[i-1, j]  // recursive relation
-return C[n, k]
-\end{verbatim}
-\normalsize
+\begin{algorithm}[h]
+\caption{Dynamic Programming Binomial}
+\begin{algorithmic}[1]
+\Function{Binomial}{$n, k$}
+\For{$i \leftarrow 0, n$}\Comment{fill out the table row wise}
+  \For{$i \leftarrow 0, min(i, k)$}
+    \If{j==0 or j==i}
+      \State $C[i, j] \leftarrow 1$
+    \Else
+      \State $C[i, j] \leftarrow C[i-1, j-1] + C[i-1, j]$\Comment{recursive relation}
+    \EndIf
+  \EndFor
+\EndFor
+\State \Return $C[n, k]$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
 \selectlanguage{greek}
+
 Μόνο η μισή γραμμή χρειάζεται υπολογισμό γιατί οι τιμές είναι ίσες αντιδιαμετρικά. Οπότε οι εντατικοί υπολογισμοί εκτελούνται μόνο στο πρώτο μισό του πίνακα και η κύρια πράξη είναι η πρόσθεση. Ο κώδικας υλοποίησης του αλγορίθμου φαίνεται στο Παράρτημα~\ref{AppC} (γραμμές 126 - 133).
 
 \subsection{Κύριο Μέρος}
@@ -704,7 +749,7 @@ return C[n, k]
 \end{figure}
 
 \subsection{\textlatin{M} σταθμοί / \textlatin{N} κανάλια / 1 \textlatin{receiving buffer} (\textlatin{stage2})}
-Σε αυτή την περίπτωση επαυξάνουμε την δυνατότητα μεταγωγής πακέτων του συστήματος αυξάνοντας τα διαθέσιμα κανάλια πάνω στα οποία γίνεται ο ανταγωνισμός των σταθμών. Αναμένουμε να δούμε αποτελέσματα ανάλογα της~\ref{eq:04}. Τα αποτελέσματα της προσομοίωσης παρουσιάζονται στα σχήματα~\ref{fig:Stage2_50} και ~\ref{fig:Stage2_100}
+Σε αυτή την περίπτωση επαυξάνουμε την δυνατότητα μεταγωγής πακέτων του συστήματος αυξάνοντας τα διαθέσιμα κανάλια πάνω στα οποία γίνεται ο ανταγωνισμός των σταθμών. Τα αποτελέσματα της προσομοίωσης παρουσιάζονται στα σχήματα~\ref{fig:Stage2_50} και ~\ref{fig:Stage2_100}
 \begin{figure}[h]
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width=0.9\linewidth, height=5cm]{st2_throughput_M50} 
