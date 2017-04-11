@@ -733,89 +733,65 @@ F(x;\alpha,c)=\Pr(X \leq x)=1-\left(\frac{\alpha}{x}\right)^{c}
 \subsection{\textlatin{M} σταθμοί / 1 κανάλια / 1 \textlatin{receiving buffer} (\textlatin{stage1})}
 Στα παρακάτω σχήματα παρουσιάζεται η εξέλιξη των \textlatin{delay, throughput} σε σχέση με την πιθανότητα επανεκπομπής των \textlatin{busy} σταθμών. Είναι εμφανές ότι σε αυτή την περίπτωση υπάρχει μεγάλος ανταγωνισμός για το κανάλι και για αυτό το λόγο υπάρχει υψηλή καθυστέρηση. Σε σχέση όμως με το \textlatin{pure aloha} παρατηρείται διπλασιασμός του \textlatin{throughput S}.
 \begin{figure}[h]
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st1_throughput} 
+\includegraphics[width=0.9\linewidth, height=10cm]{st1_throughput} 
 \caption{\textlatin{Stage1 Throughput}}
 \label{fig:st1_throughput}
-\end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st1_delay}
+\end{figure}
+\begin{figure}[h]
+\includegraphics[width=0.9\linewidth, height=10cm]{st1_delay}
 \caption{\textlatin{Stage1 Delay}}
 \label{fig:st1_delay}
-\end{subfigure}
- 
-\caption{\textlatin{Throughput} και \textlatin{delay} απεικονίσεις για το \textlatin{stage1}}
-\label{fig:Stage1}
 \end{figure}
 
 \subsection{\textlatin{M} σταθμοί / \textlatin{N} κανάλια / 1 \textlatin{receiving buffer} (\textlatin{stage2})}
-Σε αυτή την περίπτωση επαυξάνουμε την δυνατότητα μεταγωγής πακέτων του συστήματος αυξάνοντας τα διαθέσιμα κανάλια πάνω στα οποία γίνεται ο ανταγωνισμός των σταθμών. Τα αποτελέσματα της προσομοίωσης παρουσιάζονται στα σχήματα~\ref{fig:Stage2_50} και ~\ref{fig:Stage2_100}
+Σε αυτή την περίπτωση επαυξάνουμε την δυνατότητα μεταγωγής πακέτων του συστήματος αυξάνοντας τα διαθέσιμα κανάλια πάνω στα οποία γίνεται ο ανταγωνισμός των σταθμών. Τα αποτελέσματα της προσομοίωσης παρουσιάζονται στα σχήματα~\ref{fig:st2_throughput_50},~\ref{fig:st2_delay_50},~\ref{fig:st2_throughput_100} και~\ref{fig:st2_delay_100}.
 \begin{figure}[h]
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st2_throughput_M50} 
+\includegraphics[width=0.9\linewidth, height=10cm]{st2_throughput_M50} 
 \caption{\textlatin{Stage2 Throughput M=50}}
 \label{fig:st2_throughput_50}
-\end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st2_delay_M50}
+\end{figure}
+\begin{figure}[h]
+\includegraphics[width=0.9\linewidth, height=10cm]{st2_delay_M50}
 \caption{\textlatin{Stage2 Delay M=50}}
 \label{fig:st2_delay_50}
-\end{subfigure}
- 
-\caption{\textlatin{Throughput} και \textlatin{delay} απεικονίσεις για το \textlatin{stage2}, M=50}
-\label{fig:Stage2_50}
 \end{figure}
 
 \begin{figure}[h]
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st2_throughput_M100} 
+\includegraphics[width=0.9\linewidth, height=10cm]{st2_throughput_M100} 
 \caption{\textlatin{Stage2 Throughput M=100}}
 \label{fig:st2_throughput_100}
-\end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st2_delay_M100}
+\end{figure}
+\begin{figure}[h]
+\includegraphics[width=0.9\linewidth, height=10cm]{st2_delay_M100}
 \caption{\textlatin{Stage2 Delay M=100}}
 \label{fig:st2_delay_100}
-\end{subfigure}
- 
-\caption{\textlatin{Throughput} και \textlatin{delay} απεικονίσεις για το \textlatin{stage2}, M=100}
-\label{fig:Stage2_100}
 \end{figure}
+
 Πράγματι είναι εμφανής η αύξηση του \textlatin{throughput} καθώς αυξάνεται το πλήθος των διαθέσιμων καναλιών.
 
 \subsection{\textlatin{M} σταθμοί / \textlatin{N} κανάλια / \textlatin{F} \textlatin{receiving buffer} (\textlatin{stage3})}
-Στο \textlatin{stage3} γίνεται αύξηση του αριθμού των πακέτων που μπορεί ένας σταθμός να αποθηκεύσει στο \textlatin{receiving buffer} του, ώστε να τα επεξεργαστεί σε δεύτερο χρόνο. Η διαφορά από την αύξηση του \textlatin{receiving buffer} από 1 σε 2 είναι σημαντική, όμως η αύξηση του σε 3 και πάνω δεν δίνει εμφανή αποτελέσματα. Οι απεικονίσεις για το \textlatin{stage3} φαίνονται στα γραφήματα~\ref{fig:Stage3_50} και ~\ref{fig:Stage3_100}:
+Στο \textlatin{stage3} γίνεται αύξηση του αριθμού των πακέτων που μπορεί ένας σταθμός να αποθηκεύσει στο \textlatin{receiving buffer} του, ώστε να τα επεξεργαστεί σε δεύτερο χρόνο. Η διαφορά από την αύξηση του \textlatin{receiving buffer} από 1 σε 2 είναι σημαντική, όμως η αύξηση του σε 3 και πάνω δεν δίνει εμφανή αποτελέσματα. Οι απεικονίσεις για το \textlatin{stage3} φαίνονται στα γραφήματα~\ref{fig:st3_throughput_50},~\ref{fig:st3_delay_50},~\ref{fig:st3_throughput_100} και~\ref{fig:st3_delay_100}:
 
 \begin{figure}[h]
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st3_throughput_M50} 
+\includegraphics[width=0.9\linewidth, height=10cm]{st3_throughput_M50} 
 \caption{\textlatin{Stage3 Throughput M=50}}
 \label{fig:st3_throughput_50}
-\end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st3_delay_M50}
+\end{figure}
+\begin{figure}[h]
+\includegraphics[width=0.9\linewidth, height=10cm]{st3_delay_M50}
 \caption{\textlatin{Stage3 Delay M=50}}
 \label{fig:st3_delay_50}
-\end{subfigure}
- 
-\caption{\textlatin{Throughput} και \textlatin{delay} απεικονίσεις για το \textlatin{stage3}, M=50}
-\label{fig:Stage3_50}
 \end{figure}
 
 \begin{figure}[h]
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st3_throughput_M100} 
+\includegraphics[width=0.9\linewidth, height=10cm]{st3_throughput_M100} 
 \caption{\textlatin{Stage3 Throughput M=100}}
 \label{fig:st3_throughput_100}
-\end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-\includegraphics[width=0.9\linewidth, height=5cm]{st3_delay_M100}
+\end{figure}
+\begin{figure}[h]
+\includegraphics[width=0.9\linewidth, height=10cm]{st3_delay_M100}
 \caption{\textlatin{Stage3 Delay M=100}}
 \label{fig:st3_delay_100}
-\end{subfigure}
- 
-\caption{\textlatin{Throughput} και \textlatin{delay} απεικονίσεις για το \textlatin{stage3}, M=100}
-\label{fig:Stage3_100}
 \end{figure}
 
 \section{Συμπεράσματα}
